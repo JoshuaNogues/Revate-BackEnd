@@ -3,11 +3,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
 var mongoose = require('mongoose');
 var cors = require('cors')
 
 var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth')
+var restaurantsRouter = require('./routes/restaurants');
 
 var app = express();
 
@@ -28,6 +30,7 @@ app.use(
 
 app.use('/users', usersRouter);
 app.use('/auth', authRouter);
+app.use('/restaurants', restaurantsRouter)
 
 app.use(function (req, res, next) {
     next(createError(404));

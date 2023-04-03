@@ -11,7 +11,7 @@ const isAuthenticated = require('../middlware/isAuthenticated')
 
 
 router.post("/signup", (req, res, next) => {
-  if (!req.body.email || !req.body.password) {
+  if (!req.body.email || !req.body.username || !req.body.password) {
     return res.status(400).json({ message: "please fill out all fields" });
   }
 
@@ -25,6 +25,7 @@ router.post("/signup", (req, res, next) => {
 
         User.create({
           email: req.body.email,
+          username: req.body.username,
           password: hashedPass,
         })
           .then((createdUser) => {
